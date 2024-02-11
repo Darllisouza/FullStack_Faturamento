@@ -143,7 +143,7 @@ def processar_pdf():
 
     # Encontra a data mais recente e define a data inicial para 12 meses antes dela
     data_atual = pd.to_datetime('today')
-    data_inicial = data_atual - pd.DateOffset(months=14)
+    data_inicial = data_atual - pd.DateOffset(months=13)
 
     # Filtra o DataFrame agrupado para incluir apenas os últimos 12 meses
     df_ultimos_12_meses = df_agrupado[df_agrupado['Data'] >= data_inicial]
@@ -193,7 +193,7 @@ def processar_pdf():
             ultima_data = df_ultimos_12_meses['Data'].iloc[-1]
 
             # Calcula a próxima data para o próximo mês
-            proxima_data = ultima_data + pd.DateOffset(days=30)
+            proxima_data = ultima_data + pd.DateOffset(months=1)
 
             # Adiciona uma nova linha ao DataFrame df_ultimos_12_meses para o próximo mês
             nova_linha = {'Data': proxima_data, 'Valor': valor_total}  
