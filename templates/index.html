@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Declaração de Faturamento</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon/Imagem1.png" type="image/x-icon">
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link href="/img/fontawesome/fontawesome-free-6.4.2-web/css/all.css" rel="stylesheet">
+  <script src="https://cdn.counter.dev/script.js" data-id="217d4bd1-88ee-4031-80b0-a2bb72889bfe" data-utcoffset="-3"></script>
+  <title>Demonstrativo de Faturamento</title>
+
+  <script>
+    function scrollToSection(sectionId) {
+      const section = document.getElementById(sectionId);
+       window.scrollTo({
+         top: section.offsetTop,
+         behavior: "smooth"
+       });
+     }
+   </script> 
+</head>
+<body>
+    <header class="container-fluid bg-light navbar-custom fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <h1 id="logo"><strong>&lt / &gt</strong> Mobi Contabilidade</h1>
+          </a>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav flex-grow-1 justify-content-end">
+              <li class="nav-item">
+                <a class="nav-link" href="" onclick="scrollToSection('faturamento')">Demonstrativo de Faturamento</a>
+              </li>
+          </div>
+        </nav>
+      </header>
+      <section class="hero">
+        <h2>Olá colaborador Mobi, <br>Este é o seu espaço para emitir o <br><strong>Demonstrativo de Faturamento</strong> <br></h2>
+      </section>
+      <div id="faturamento">
+        <h3>Criar Demonstrativo:</h3>
+        <div class="button">
+            <form id="uploadForm" method="post" enctype="multipart/form-data" action="/processar_pdf">
+                <input type="file" name="file">
+                <button class="orange-button" type="submit">Processar PDF</button>
+            </form>
+            <form id="wordForm" method="post" action="/gerar_documento_word">
+                <button class="orange-button" type="submit">Gerar e baixar o Demonstrativo</button>
+            </form>
+        </div>
+        <div id="instructions">
+        <h3>Passo a Passo</h3>
+        <ol>
+            <li>Por favor, selecione o arquivo PGDAS-DECLARAÇÃO.PDF para enviar.</li>
+            <li>Clique no botão "Processar PDF" para que eu possa extrair os valores dos últimos 12 meses.</li>
+            <li>Aguarde 10 segundo.</li>
+            <li>Por fim, basta clicar em "Gerar" para obter seu Relatório de Faturamento do CNPJ escolhido.</li>
+            <li>Ele será baixado na sua pasta download.</li>
+        </ol>
+    </div>
+    <footer>
+        <div class="nav justify-content-center border-bottom pb-1 mb-1">
+            <li class="nav-item"><a href="#" class="nav-link px-1 text-muted"><p class="text-center text-muted">&copy;2024 - Darlliane Souza</p></a></li>
+        </div>
+    </footer>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

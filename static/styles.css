@@ -1,0 +1,157 @@
+/* Estilos gerais */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+}
+
+/* Barra de navegação */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.nav-item a {
+  margin-right: 2.0rem;
+}
+
+#logo {
+  color: rgb(70, 70, 89);
+  font-size: 1.5rem;
+}
+
+#logo:hover {
+  color: #FF7F00;
+}
+
+#logo a {
+  text-decoration: none;
+  color: inherit; /* Para herdar a cor do texto do pai (#logo) */
+}
+
+#logo a:hover {
+  color: #FF7F00; /* Cor ao passar o mouse (pode ser personalizada conforme necessário) */
+}
+
+strong {
+  color: #FF7F00;
+}
+
+.hero {
+  padding: 2rem 1rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #fcd8ad;
+  min-height: 300px; /* Definindo uma altura mínima */
+}
+
+.hero h2 {
+  max-width: 35.0rem;
+  font-size: 2.0rem;
+}
+
+/* Estilos para outras seções */
+h3 {
+  color: #FF7F00;
+  font-size: 3.0rem;
+}
+
+#faturamento {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+  }
+
+#instructions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+  }
+
+/* Estilo para os botões laranja */
+.orange-button {
+    background-color: #FF7F00;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px; /* Espaço entre os botões */
+    border-radius: 5px; /* Adicionando bordas arredondadas */
+    transition: background-color 0.3s, color 0.3s; /* Adicionando transição suave */
+}
+
+/* Altera o estilo do texto ao passar o mouse */
+.orange-button:hover {
+    background-color: transparent;
+    color: #FF7F00;
+    border: 1px solid #FF7F00; /* Adiciona uma borda laranja ao passar o mouse */
+    cursor: pointer; /* Muda o cursor para indicar que o elemento é clicável */
+}
+
+
+
+/* Estilo para alinhar os botões verticalmente */
+.button form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+  margin-top: 1rem; /* Ajustando a margem superior */
+  cursor: pointer;
+}
+
+
+/*regras dentro de uma media query para telas menores */
+
+@media screen and (max-width: 768px) {
+  
+    /* Barra de Navegação */
+    .navbar {
+      padding: 1rem 0;
+    }
+  
+    #logo {
+      font-size: 1.2rem;
+    }
+  
+    .nav-item a {
+      margin-right: 1rem;
+    }
+  
+    /* Seções */
+    .hero {
+      padding: 2rem 0;
+      text-align: center;
+      width: 100%; 
+      box-sizing: border-box; 
+    }
+  
+    .hero h2 {
+      font-size: 1.0rem;
+      max-width: 100%;
+    }
+  
+
+   
+    #faturamento {
+      padding: 3rem 1rem;
+    }
+  
+
+    #instructions {
+      padding: 3rem 1rem;
+    }
+}
