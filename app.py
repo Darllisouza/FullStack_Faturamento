@@ -210,6 +210,15 @@ def processar_pdf():
     # Converter em valor e data
     df_ultimos_12_meses['Valor'] = df_ultimos_12_meses['Valor'].replace('0,00', '0') 
     df_ultimos_12_meses['Valor'] = df_ultimos_12_meses['Valor'].apply(lambda x: locale.format_string('%.2f', float(x), grouping=True))
+
+     # Novo trecho de código para tratar a formatação dos valores
+    for value in df_ultimos_12_meses['Valor']:
+        if not isinstance(value, (int, float)):
+            # Trate valores não numéricos como desejado (por exemplo, substitua por 0)
+            df_ultimos_12_meses['Valor'] = df_ultimos_12_meses['Valor'].fillna(0)
+
+    # Aplique a formatação apenas aos valores numéricos
+    df_ultimos_12_meses['Valor'] = df_ultimos_12_meses['Valor'].apply(lambda x: f"R$ {x:,.2f}" if isinstance(x, (int, float)) else x)
     df_ultimos_12_meses['Data'] = df_ultimos_12_meses['Data'].dt.strftime('%m/%Y')
     df_ultimos_12_meses['Valor'] = df_ultimos_12_meses['Valor'].str.replace('.', ',')
 
