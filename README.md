@@ -6,5 +6,4 @@ Ao permitir o envio de arquivos PDF e extrair automaticamente informações rele
 
 https://demonstrativodefaturamento.onrender.com/
 
-
 ![Preview](/templates/img.png)
