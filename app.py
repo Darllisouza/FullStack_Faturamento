@@ -182,7 +182,7 @@ def processar_pdf():
                     break
     except Exception as e:
         print("Erro ao abrir o arquivo PDF:", e)
-
+        
     # Obtém a última data no DataFrame df_ultimos_12_meses
     try:
         # Carrega o DataFrame df_ultimos_12_meses existente do arquivo Excel
@@ -195,10 +195,22 @@ def processar_pdf():
             # Calcula a próxima data para o próximo mês
             proxima_data = ultima_data + pd.DateOffset(months=1)
 
-            # Adiciona uma nova linha ao DataFrame df_ultimos_12_meses para o próximo mês
-            nova_linha = {'Data': proxima_data, 'Valor': valor_total}  
-            df_ultimos_12_meses = pd.concat([df_ultimos_12_meses, pd.DataFrame([nova_linha])], ignore_index=True)
+            # Converter o valor total para float, se possível
+            valor_total_float = None
+            try:
+                valor_total_float = float(valor_total.replace(".", "").replace(",", "."))
+            except ValueError as e:
+                print("Erro ao converter o valor total para float:", e)
 
+            # Adiciona uma nova linha ao DataFrame df_ultimos_12_meses para o próximo mês
+            nova_linha = {'Data': proxima_data, 'Valor': valor_total_float}
+
+            # Verifica se o valor total foi convertido com sucesso para float
+            if valor_total_float is not None:
+                # Concatena a nova linha ao DataFrame
+                df_ultimos_12_meses = pd.concat([df_ultimos_12_meses, pd.DataFrame([nova_linha])], ignore_index=True)
+            else:
+                print("Valor total não pôde ser convertido para float. A linha não foi adicionada ao DataFrame.")
 
             # Salva o DataFrame atualizado no arquivo DECLARACAO_DE_FATURAMENTO.xlsx
             df_ultimos_12_meses.to_excel(excel_file_path, index=False)
@@ -330,6 +342,23 @@ def baixar_documento_word():
     else:
         # Se o arquivo não existe, retorna uma mensagem de erro
         return 'O arquivo não foi encontrado.', 404
+
+# Função para limpar a pasta de uploads
+def limpar_pasta_uploads():
+    folder = 'uploads'  # Nome da pasta de uploads
+
+    # Obtém a lista de arquivos na pasta
+    file_list = os.listdir(folder)
+
+    # Itera sobre a lista de arquivos e os exclui um por um
+    for filename in file_list:
+        file_path = os.path.join(folder, filename)
+        os.remove(file_path)
+
+    print("Pasta de uploads limpa com sucesso.")
+
+# Chama a função para limpar a pasta de uploads ao final do código
+limpar_pasta_uploads()
 
 if __name__ == '__main__':
     app.run(debug=True)
